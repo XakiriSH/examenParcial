@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+</head>
+<body>
+    <h2>Lista de Tiendas</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Dirección</th>
+                <th>Provincia</th>
+                <th>Región</th>
+                <th>Fecha de Creación</th>
+                <th>Teléfono de Contacto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            
+            {% for tienda in tiendas %}
+                <tr>
+                    <td>{{ tienda.direccion }}</td>
+                    <td>{{ tienda.provincia }}</td>
+                    <td>{{ tienda.region }}</td>
+                    <td>{{ tienda.fecha_creacion }}</td>
+                    <td>{{ tienda.telefono_contacto }}</td>
+                    <td>
+                        
+                        <a href="{% url 'detalle_tienda' tienda.id %}" class="btn btn-primary btn-sm">Ver Productos</a>
+                        
+                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarTiendaModal{{ tienda.id }}">Eliminar</button>
+                    </td>
+                </tr>
+                
+                <div class="modal fade" id="agregarTiendaModal" tabindex="-1" role="dialog" aria-labelledby="agregarTiendaModalLabel" aria-hidden="true">
+                    
+                </div>
+
+                <div class="modal fade" id="eliminarTiendaModal{{ tienda.id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarTiendaModalLabel" aria-hidden="true">
+                    
+                </div>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    
+    <button class="btn btn-success" data-toggle="modal" data-target="#agregarTiendaModal">Agregar Tienda</button>
+</body>
+</html>
